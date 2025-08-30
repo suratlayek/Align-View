@@ -1,0 +1,10 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+    <file>adaptic.qss</file>
+    <file>align_view_icon.png</file>
+    <file>align_view_icon.svg</file>
+    <file>align_view_icon.ico</file>
+    <file>up_arrow.svg</file>
+    <file>down_arrow.svg</file>
+</qresource>
+</RCC>
