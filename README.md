@@ -25,8 +25,44 @@ Align View is a simple desktop utility that allows you to overlay a semi-transpa
 * **Move 1px:** `Ctrl` + Arrow Keys.
 * **Move 10px:** `Shift` + Arrow Keys.
 
+## Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/suratlayek/Align-View.git
+    cd Align-View
+    ```
+
+2.  **Create a virtual environment (recommended):**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
+
+3.  **Install the dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## Usage
+
+To run the application, simply execute the `align_view.py` script:
+
+```bash
+python align_view.py
+```
+## How to Use the UI File
+The UI is managed in `src/resources/align_view_ui.ui`. If you make changes to this file using Qt Designer, you will need to regenerate the Python UI file (`align_view_ui.py`) using the following command:
+
+```bash
+pyuic5 -x src/resources/align_view_ui.ui -o src/align_view_ui.py
+```
+Similarly, if you update your resources (icons, QSS), you must recompile the `resources.qrc` file:
+```bash
+pyrcc5 src/resources/resources.qrc -o src/resources_rc.py
+```
 ## Acknowledgements
 
 This project uses the **Adaptic** theme, a beautiful QSS stylesheet created by **DevSec Studio**. Thanks to DevSec Studio for making their work available to the community.
 
-* You can find the original project here: [[Link to the website for adaptic.qss](https://qss-stock.devsecstudio.com/templates.php)]
+* You can find the original theme here: [[Link to the website for adaptic.qss](https://qss-stock.devsecstudio.com/templates.php)]
