@@ -1,5 +1,8 @@
 # Align View
 
+[![Download](https://img.shields.io/badge/Download_Installer-v1.0-brightgreen)](https://github.com/suratlayek/Align-View/releases/download/v1.0/AlignView-1.0-setup.exe)
+
+
 Align View is a simple desktop utility that allows you to overlay a semi-transparent, movable, and resizable image on top of your screen. It's perfect for artists, designers, and developers who need to trace, align, or compare designs with pixel-perfect precision.
 
 <img width="672" height="312" alt="Image" src="https://github.com/user-attachments/assets/2c259d1c-b159-4b47-8fef-565d378287fd" /> 
@@ -25,7 +28,7 @@ Align View is a simple desktop utility that allows you to overlay a semi-transpa
 * **Move 1px:** `Ctrl` + Arrow Keys.
 * **Move 10px:** `Shift` + Arrow Keys.
 
-## Installation
+## Installation (Using Source)
 
 1.  **Clone the repository:**
     ```bash
