@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="47.73925mm"
+   height="48.34864mm"
+   viewBox="0 0 47.73925 48.34864"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="align_view_blue_icon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="4.0003279"
+     inkscape:cx="80.993361"
+     inkscape:cy="86.742889"
+     inkscape:window-width="1920"
+     inkscape:window-height="974"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-102.17759,-39.7789)">
+    <path
+       id="rect1"
+       style="fill:#ccebfb;fill-opacity:1;fill-rule:evenodd;stroke-width:1.759;stroke-linejoin:round;paint-order:markers stroke fill"
+       d="m 110.50659,39.7789 h 20.31464 c 4.61426,0 8.329,3.714735 8.329,8.329002 v 20.314634 c 0,4.614267 -3.71474,8.329001 -8.329,8.329001 h -20.31464 c -4.61427,0 -8.329,-3.714734 -8.329,-8.329001 V 48.107902 c 0,-4.614267 3.71473,-8.329002 8.329,-8.329002 z" />
+    <path
+       id="rect2"
+       style="fill:#38bdf8;fill-opacity:1;fill-rule:evenodd;stroke-width:1.759;stroke-linejoin:round;paint-order:markers stroke fill"
+       d="m 121.27311,51.15512 c -4.61426,0 -8.32869,3.714946 -8.32869,8.329207 V 79.79885 c 0,4.614262 3.71443,8.32869 8.32869,8.32869 h 20.31504 c 4.61426,0 8.32869,-3.714428 8.32869,-8.32869 V 59.484327 c 0,-4.614261 -3.71443,-8.329207 -8.32869,-8.329207 z m -1.59887,5.860107 h 5.52938 l 6.39082,18.689299 6.1836,-18.689299 h 5.40898 l -9.04338,25.252206 h -5.44308 z" />
+    <path
+       d="m 132.65492,70.250847 h -5.54661 l -2.20486,-5.736088 h -10.09414 l -2.08429,5.736088 h -5.4088 l 9.83576,-25.252567 h 5.39157 z m -9.3879,-9.990784 -3.47954,-9.370666 -3.41065,9.370666 z"
+       id="text2"
+       style="font-weight:bold;font-size:35.2778px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;letter-spacing:0.264583px;text-anchor:middle;fill:#ffffff;fill-opacity:0.481742;fill-rule:evenodd;stroke-width:1.759;stroke-linejoin:round;paint-order:markers stroke fill"
+       aria-label="A" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.05556px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;letter-spacing:0.264583px;text-anchor:middle;fill:#ffffff;fill-opacity:0.481742;fill-rule:evenodd;stroke:none;stroke-width:1.759;stroke-linejoin:round;paint-order:markers stroke fill"
+       x="139.55652"
+       y="70.250854"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="font-size:7.05556px;stroke-width:1.759"
+         x="139.68881"
+         y="70.250854">lign</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.05556px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;letter-spacing:0.264583px;text-anchor:middle;fill:#b8d9d8;fill-opacity:0.607843;fill-rule:evenodd;stroke:none;stroke-width:1.759;stroke-linejoin:round;paint-order:markers stroke fill"
+       x="141.79112"
+       y="82.184982"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="fill:#b8d9d8;fill-opacity:0.607843;stroke-width:1.759"
+         x="141.92342"
+         y="82.184982">iew</tspan></text>
+  </g>
+</svg>
