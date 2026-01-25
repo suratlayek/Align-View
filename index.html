@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Align View | Overlay Utility for Designers & Devs</title>
+    
+    <!-- Favicon (Embedded SVG for immediate usage) -->
+    <link rel="icon" type="image/svg+xml" href="src/resources/align_view_icon.ico">
+
+    <style>
+        /* --- CSS Variables --- */
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --primary: #38bdf8; /* Sky Blue */
+            --accent: #22d3ee;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --success: #4ade80;
+            --border: #334155;
+            
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: 'Fira Code', 'Courier New', monospace;
+            
+            --container-width: 1100px;
+            --radius: 12px;
+        }
+
+        /* --- Reset & Base --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.2s; }
+        ul { list-style: none; }
+        
+        /* Global image reset - ensuring default behavior */
+        img { max-width: 100%; display: block; border-radius: var(--radius); }
+
+        /* --- Typography --- */
+        h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+        h1 { font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h2 { font-size: 2rem; margin-bottom: 2rem; text-align: center; }
+        h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        p { color: var(--text-muted); margin-bottom: 1.5rem; }
+
+        /* --- Layout Utilities --- */
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 20px; }
+        .section { padding: 80px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .grid { display: grid; gap: 24px; }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); } /* Will automatically handle 4 items nicely */
+        .text-center { text-align: center; }
+
+        /* --- Components --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            gap: 8px;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg-dark);
+        }
+        .btn-primary:hover { filter: brightness(1.1); }
+
+        .btn-download {
+            background: var(--success);
+            color: var(--bg-dark);
+            font-size: 1.1rem;
+            padding: 14px 28px;
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.2);
+        }
+        .btn-download:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(74, 222, 128, 0.3); }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+        header .container {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo { font-weight: 800; font-size: 1.25rem; color: white; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: var(--primary); }
+
+        /* --- Hero --- */
+        .hero { padding: 160px 0 80px 0; text-align: center; }
+        .hero-content { max-width: 800px; margin: 0 auto; }
+        .hero-badges { display: flex; justify-content: center; gap: 16px; margin-bottom: 32px; }
+        .badge { background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; color: var(--text-muted); }
+        
+        .hero-img {
+            margin: 60px auto 0 auto; /* 'auto' on left and right ensures horizontal alignment */
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            max-width: 100%; /* Ensures it doesn't overflow the container */
+            height: auto;
+        }
+
+        /* --- Features --- */
+        .feature-card {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: 0.3s ease;
+        }
+        .feature-card:hover { background: var(--bg-card-hover); transform: translateY(-5px); }
+        .icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        /* --- Controls / Cheat Sheet --- */
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        .control-group h3 { color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
+        
+        .control-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .control-item:last-child { border-bottom: none; }
+        
+        kbd {
+            background: #0f172a;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-main);
+            box-shadow: 0 2px 0 #000;
+        }
+        kbd + kbd { margin-left: 4px; }
+
+        /* --- Installation & Code --- */
+        .code-block {
+            background: #0b1120;
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            margin-bottom: 24px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            position: relative;
+        }
+        .code-comment { color: #64748b; font-style: italic; }
+        .code-cmd { color: var(--success); }
+        
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .tab-btn.active { background: var(--primary); color: var(--bg-dark); border-color: var(--primary); }
+
+        /* --- Acknowledgements --- */
+        .ack-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(56, 189, 248, 0.1) 100%);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: var(--radius);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- Footer --- */
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .hero { padding-top: 120px; }
+            .controls-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo">
+                <!-- Simple SVG Logo -->
+                <img src="src/resources/align_view_blue_icon.svg" alt="Align View Logo" class="logo-img" style="width: 24px; height: 24px; border-radius: 0;" >
+                Align<span>View</span>
+            </a>
+            <nav>
+                <a href="https://github.com/suratlayek/Align-View" target="_blank" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badges">
+                        <span class="badge">v1.0</span>
+                        <span class="badge">Python & Qt</span>
+                        <span class="badge">Open Source</span>
+                    </div>
+                    <h1>Pixel-Perfect Overlay<br>For Your Desktop</h1>
+                    <p style="font-size: 1.15rem; color: #cbd5e1;">
+                        A simple desktop utility to overlay a semi-transparent, movable image on your screen. 
+                        Perfect for artists, designers, and developers who need to trace or align designs.
+                    </p>
+                    <div style="margin-top: 32px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                        <!-- The specific download badge from the README converted to a button -->
+                        <a href="https://github.com/suratlayek/Align-View/releases/download/v1.0/AlignView-1.0-setup.exe" class="btn btn-download">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download Installer (v1.0)
+                        </a>
+                        <a href="#installation" class="btn" style="border: 1px solid var(--border); color: var(--text-main);">
+                            Build from Source
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Screenshot using local file, centered via CSS -->
+                <img src="screenshot1.png" 
+                     alt="Align View Application Interface" 
+                     class="hero-img">
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section" id="features">
+            <div class="container">
+                <h2>Key Features</h2>
+                <div class="grid grid-3">
+                    <!-- Feature 1: Adjustable Overlay -->
+                    <div class="feature-card">
+                        <div class="icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                        </div>
+                        <h3>Adjustable Overlay</h3>
+                        <p>Full control over the image's opacity, scale, and rotation. Fit the reference perfectly to your workspace.</p>
+                    </div>
+                    
+                    <!-- Feature 2: Drag & Drop -->
+                    <div class="feature-card">
+                        <div class="icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                        </div>
+                        <h3>Drag & Drop</h3>
+                        <p>Workflow is seamless. Simply drag an image file from your computer and drop it onto the app to load it instantly.</p>
+                    </div>
+
+                    <!-- Feature 3: Click-through -->
+                    <div class="feature-card">
+                        <div class="icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path><path d="M13 13l6 6"></path></svg>
+                        </div>
+                        <h3>Click-through Mode</h3>
+                        <p>Enable click-through to interact with the windows underneath your overlay without needing to hide or move the image.</p>
+                    </div>
+
+                    <!-- Feature 4: Lock View -->
+                    <div class="feature-card">
+                        <div class="icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        </div>
+                        <h3>Lock View</h3>
+                        <p>Once aligned, lock the overlay to prevent accidental movements or clicks while you work.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls Cheat Sheet -->
+        <section class="section" id="controls">
+            <div class="container">
+                <h2>Controls & Shortcuts</h2>
+                <p class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
+                    Use these combinations on the Overlay Window for maximum efficiency.
+                </p>
+
+                <div class="controls-grid">
+                    <!-- Mouse Controls -->
+                    <div class="control-group">
+                        <h3>Mouse Controls</h3>
+                        <div class="control-item">
+                            <span>Move Overlay</span>
+                            <span><kbd>Left Click</kbd> + Drag</span>
+                        </div>
+                        <div class="control-item">
+                            <span>Zoom (Scale)</span>
+                            <span><kbd>Scroll</kbd></span>
+                        </div>
+                        <div class="control-item">
+                            <span>Rotate</span>
+                            <span><kbd>Shift</kbd> + <kbd>Scroll</kbd></span>
+                        </div>
+                        <div class="control-item">
+                            <span>Opacity</span>
+                            <span><kbd>Ctrl</kbd> + <kbd>Scroll</kbd></span>
+                        </div>
+                        <div class="control-item">
+                            <span>Show Help</span>
+                            <span><kbd>Right Click</kbd></span>
+                        </div>
+                    </div>
+
+                    <!-- Keyboard Controls -->
+                    <div class="control-group">
+                        <h3>Keyboard Controls</h3>
+                        <div class="control-item">
+                            <span>Move 1px (Precise)</span>
+                            <span><kbd>Ctrl</kbd> + <kbd>Arrows</kbd></span>
+                        </div>
+                        <div class="control-item">
+                            <span>Move 10px (Fast)</span>
+                            <span><kbd>Shift</kbd> + <kbd>Arrows</kbd></span>
+                        </div>
+                        <div class="control-item">
+                            <span>Standard Move</span>
+                            <span><kbd>Arrows</kbd></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation Section -->
+        <section class="section" id="installation">
+            <div class="container">
+                <h2>Installation</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="switchTab('source')">Source Code</button>
+                        <button class="tab-btn" onclick="switchTab('ui')">UI Files</button>
+                    </div>
+
+                    <!-- Source Code Tab -->
+                    <div id="tab-source">
+                        <div class="code-block">
+                            <div class="code-comment"># 1. Clone the repository</div>
+                            <div class="code-cmd">git clone https://github.com/suratlayek/Align-View.git</div>
+                            <div class="code-cmd">cd Align-View</div>
+                            <br>
+                            <div class="code-comment"># 2. Create virtual environment (recommended)</div>
+                            <div class="code-cmd">python -m venv venv</div>
+                            <div class="code-cmd"># On Windows use: venv\Scripts\activate</div>
+                            <div class="code-cmd"># On Mac/Linux use: source .venv/bin/activate</div>
+                            <br>
+                            <div class="code-comment"># 3. Install dependencies</div>
+                            <div class="code-cmd">pip install -r requirements.txt</div>
+                        </div>
+                        <p>Run the app using:</p>
+                        <div class="code-block">
+                            <div class="code-cmd">python align_view.py</div>
+                        </div>
+                    </div>
+
+                    <!-- UI Files Tab -->
+                    <div id="tab-ui" style="display: none;">
+                        <p>Modifying the UI requires recompilation.</p>
+                        
+                        <p><strong>Compile UI File:</strong></p>
+                        <div class="code-block">
+                            <div class="code-cmd">pyuic5 -x src/resources/align_view_ui.ui -o src/align_view_ui.py</div>
+                        </div>
+
+                        <p><strong>Compile Resources:</strong></p>
+                        <div class="code-block">
+                            <div class="code-cmd">pyrcc5 src/resources/resources.qrc -o src/resources_rc.py</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Acknowledgements -->
+        <section class="section">
+            <div class="container">
+                <div class="ack-card">
+                    <h3>Acknowledgements</h3>
+                    <p>
+                        This project utilizes the beautiful <strong>Adaptic</strong> theme by <strong>DevSec Studio</strong>.
+                    </p>
+                    <a href="https://qss-stock.devsecstudio.com/templates.php" target="_blank" class="btn btn-primary" style="background-color: #38bdf8; border: 1px solid var(--primary);">
+                        View Adaptic Theme
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Surat Layek. Released under Open Source MIT License.</p>
+            <div style="margin-top: 10px; opacity: 0.6;">
+                <a href="https://github.com/suratlayek/Align-View" style="margin: 0 10px;">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Tab Switching Logic
+        function switchTab(tabName) {
+            // Hide all contents
+            document.getElementById('tab-source').style.display = 'none';
+            document.getElementById('tab-ui').style.display = 'none';
+            
+            // Deactivate all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected
+            document.getElementById('tab-' + tabName).style.display = 'block';
+            
+            // Activate button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
