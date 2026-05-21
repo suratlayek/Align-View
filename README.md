@@ -41,7 +41,7 @@ Align View is a simple desktop utility that allows you to overlay a semi-transpa
     python -m venv venv
     venv\Scripts\activate
     #On Linux and Mac use `source venv/bin/activate`
-    #N.B.: This pjoject is not optimized for Linux and Mac
+    #N.B.: This project is not optimized for Linux and Mac.
     ```
 
 3.  **Install the dependencies:**
