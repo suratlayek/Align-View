@@ -39,7 +39,9 @@ Align View is a simple desktop utility that allows you to overlay a semi-transpa
 2.  **Create a virtual environment (recommended):**
     ```bash
     python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    venv\Scripts\activate
+    #On Linux and Mac use `source venv/bin/activate`
+    #N.B.: This pjoject is not optimized for Linux and Mac
     ```
 
 3.  **Install the dependencies:**
